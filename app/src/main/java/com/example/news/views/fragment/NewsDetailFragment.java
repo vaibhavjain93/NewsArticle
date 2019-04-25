@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.news.R;
-import com.example.news.viewmodel.NewsDetailViewModel;
+import com.example.news.views.viewmodel.NewsDetailViewModel;
 
 public class NewsDetailFragment extends Fragment {
 

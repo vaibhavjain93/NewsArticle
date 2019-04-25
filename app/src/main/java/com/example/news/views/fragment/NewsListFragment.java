@@ -14,8 +14,8 @@ import android.view.ViewGroup;
 
 import com.example.news.R;
 import com.example.news.model.NewsListObject;
-import com.example.news.viewmodel.NewsListViewModel;
-import com.example.news.viewmodel.NewsMainViewModel;
+import com.example.news.views.viewmodel.NewsListViewModel;
+import com.example.news.views.viewmodel.NewsMainViewModel;
 import com.example.news.views.adapter.NewsListAdapter;
 
 public class NewsListFragment extends Fragment {

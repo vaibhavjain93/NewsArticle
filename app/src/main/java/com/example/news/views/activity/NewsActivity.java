@@ -8,11 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.news.R;
-import com.example.news.model.News;
-import com.example.news.viewmodel.NewsMainViewModel;
+import com.example.news.views.viewmodel.NewsMainViewModel;
 import com.example.news.views.fragment.NewsListFragment;
-
-import java.util.ArrayList;
 
 
 public class NewsActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.example.news.viewmodel;
+package com.example.news.views.viewmodel;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;

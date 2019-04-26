@@ -108,6 +108,12 @@ public class NewsListFragment extends Fragment implements NewsItemClickListener,
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        loadHandler.removeCallbacksAndMessages(null);
+    }
+
+    @Override
     public void newsItemClicked(String url) {
         mainViewModel.frag1Tofrag2.setValue(url);
     }

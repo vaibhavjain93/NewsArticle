@@ -44,7 +44,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.MyView
         Glide.with(context).load(news.getImageUrl()).into(viewHolder.coverImage);
         viewHolder.titleText.setText(news.getTitle());
         viewHolder.descText.setText(news.getDescription());
-        viewHolder.coverImage.setOnClickListener(new View.OnClickListener() {
+        viewHolder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 newsItemClickListener.newsItemClicked(news.getUrl());
@@ -69,11 +69,13 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.MyView
         ImageView coverImage;
         TextView titleText;
         TextView descText;
+        View container;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             coverImage = itemView.findViewById(R.id.img_news);
             descText = itemView.findViewById(R.id.textDesc);
             titleText = itemView.findViewById(R.id.textviewTitle);
+            container = itemView.findViewById(R.id.card_container);
         }
     }
 }

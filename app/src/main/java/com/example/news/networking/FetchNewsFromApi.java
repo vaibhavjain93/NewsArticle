@@ -18,7 +18,7 @@ import retrofit2.Response;
 import static com.example.news.networking.RetrofitClient.getInstance;
 
 public class FetchNewsFromApi {
-    private static final String TAG = "201102387 FetchFromApi";
+    private static final String TAG = "vaibhav FetchFromApi";
     public static void getData(final MutableLiveData<NewsListObject> liveData) {
         Log.i(TAG, "getData: started");
         Call<ResponseBody> call = RetrofitClient.getInstance().getNewsList();

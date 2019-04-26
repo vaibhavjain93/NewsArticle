@@ -57,7 +57,13 @@ public class NewsListFragment extends Fragment implements NewsItemClickListener,
             public void onChanged(@Nullable NewsListObject newsListObject) {
                 swipeRefreshLayout.setRefreshing(false);
                 if (newsListObject != null) {
-                    newsListAdapter.setData(newsListObject.getNewsArrayList());
+                    if (newsListObject.isError()) {
+                        mViewModel.fetchDataFromDb();
+                    }
+                    else {
+                        newsListAdapter.setData(newsListObject.getNewsArrayList());
+                        mViewModel.insertToDb(newsListObject.getNewsArrayList());
+                    }
                 }
             }
         });

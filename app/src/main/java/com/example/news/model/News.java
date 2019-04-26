@@ -1,20 +1,16 @@
 package com.example.news.model;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+@Entity(tableName = "item_table")
 public class News {
-    private String sourceName;
-    private String title;
-    private String description;
-    private String url;
-    private String imageUrl;
-    private String content;
-
-    public String getSourceName() {
-        return sourceName;
-    }
-
-    public void setSourceName(String sourceName) {
-        this.sourceName = sourceName;
-    }
+    @ColumnInfo(name = "title")private String title;
+    @ColumnInfo(name = "description")private String description;
+    @ColumnInfo(name = "url")private String url;
+    @ColumnInfo(name = "image_url")private String imageUrl;
+    @PrimaryKey(autoGenerate = true) public int _id;
 
     public String getTitle() {
         return title;
@@ -46,14 +42,6 @@ public class News {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 
     @Override

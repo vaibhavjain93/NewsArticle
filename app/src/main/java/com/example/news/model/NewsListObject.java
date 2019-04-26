@@ -1,20 +1,21 @@
 package com.example.news.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NewsListObject {
-    private ArrayList<News> newsArrayList;
-    private boolean isError;
+    private List<News> newsArrayList;
+    private boolean isError = false;
 
     public NewsListObject() {
         this.newsArrayList = new ArrayList<>();
     }
 
-    public ArrayList<News> getNewsArrayList() {
+    public List<News> getNewsArrayList() {
         return newsArrayList;
     }
 
-    public void setNewsArrayList(ArrayList<News> newsArrayList) {
+    public void setNewsArrayList(List<News> newsArrayList) {
         this.newsArrayList = newsArrayList;
     }
 

@@ -17,10 +17,11 @@ import com.example.news.model.News;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.MyViewHolder> {
 
-    private ArrayList<News> mItems;
+    private List<News> mItems;
     private Context context;
     private NewsItemClickListener newsItemClickListener;
 
@@ -56,7 +57,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.MyView
         return mItems.size();
     }
 
-    public void setData(ArrayList<News> news) {
+    public void setData(List<News> news) {
         Log.i(TAG, "setData: refreshed");
         this.mItems.clear();
         this.mItems = news;

@@ -104,7 +104,6 @@ public class NewsListFragment extends Fragment implements NewsItemClickListener,
                 }
             }
         });
-        mViewModel.fetchData();
     }
 
     @Override

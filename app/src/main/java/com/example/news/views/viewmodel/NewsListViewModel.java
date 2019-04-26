@@ -20,6 +20,7 @@ public class NewsListViewModel extends AndroidViewModel {
         super(application);
         repository = new NewsRepository(application);
         liveData = new MutableLiveData<>();
+        fetchData();
     }
 
     public void fetchData() {

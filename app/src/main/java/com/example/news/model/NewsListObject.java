@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class NewsListObject {
     private ArrayList<News> newsArrayList;
+    private boolean isError;
 
     public NewsListObject() {
         this.newsArrayList = new ArrayList<>();
@@ -21,6 +22,14 @@ public class NewsListObject {
         if (this.newsArrayList == null)
             this.newsArrayList = new ArrayList<>();
         this.newsArrayList.add(news);
+    }
+
+    public boolean isError() {
+        return isError;
+    }
+
+    public void setError(boolean error) {
+        isError = error;
     }
 
     @Override

@@ -8,6 +8,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.example.news.R;
 import com.example.news.views.viewmodel.NewsDetailViewModel;
@@ -15,15 +20,38 @@ import com.example.news.views.viewmodel.NewsDetailViewModel;
 public class NewsDetailFragment extends Fragment {
 
     private NewsDetailViewModel mViewModel;
+    private static final String WEB_URL = "web_url";
+    private WebView webView;
 
-    public static NewsDetailFragment newInstance() {
-        return new NewsDetailFragment();
+    public static NewsDetailFragment newInstance(String url) {
+        NewsDetailFragment newsDetailFragment = new NewsDetailFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(WEB_URL,url);
+        newsDetailFragment.setArguments(bundle);
+        return newsDetailFragment;
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.news_detail_fragment, container, false);
+        final View root = inflater.inflate(R.layout.news_detail_fragment, container, false);
+        webView = root.findViewById(R.id.webviewDetail);
+        String url="";
+        if (getArguments()!=null) {
+            url = getArguments().getString(WEB_URL);
+        }
+        webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+        webView.getSettings().setJavaScriptEnabled(false);
+        webView.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+                webView.setVisibility(View.GONE);
+                root.findViewById(R.id.error_webview).setVisibility(View.VISIBLE);
+                super.onReceivedError(view, request, error);
+            }
+        });
+        webView.loadUrl(url);
+        return root;
     }
 
     @Override

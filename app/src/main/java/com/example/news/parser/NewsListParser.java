@@ -22,6 +22,7 @@ public class NewsListParser {
                         news.setImageUrl(articleObj.optString(Constants.URLTOIMAGE));
                         news.setTitle(articleObj.optString(Constants.TITLE));
                         news.setUrl(articleObj.optString(Constants.URL));
+                        news.setDescription(articleObj.optString(Constants.DESCRIPTION));
                         newsListObject.addNews(news);
                     }
                 }

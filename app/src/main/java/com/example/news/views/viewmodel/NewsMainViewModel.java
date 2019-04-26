@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 
 public class NewsMainViewModel extends AndroidViewModel {
 
-    public MutableLiveData<Integer> frag1Tofrag2 = new MutableLiveData<>();
+    public MutableLiveData<String> frag1Tofrag2 = new MutableLiveData<>();
 
     public NewsMainViewModel(@NonNull Application application) {
         super(application);

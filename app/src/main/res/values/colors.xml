@@ -5,4 +5,5 @@
     <color name="colorAccent">#D81B60</color>
     <color name="gradientStart">#00FFFFFF</color>
     <color name="gradientEnd">#FF000000</color>
+    <color name="bg_title">#FFFFED</color>
 </resources>

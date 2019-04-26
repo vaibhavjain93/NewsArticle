@@ -20,25 +20,36 @@ import static com.example.news.networking.RetrofitClient.getInstance;
 public class FetchNewsFromApi {
     private static final String TAG = "201102387 FetchFromApi";
     public static void getData(final MutableLiveData<NewsListObject> liveData) {
-
+        Log.i(TAG, "getData: started");
         Call<ResponseBody> call = RetrofitClient.getInstance().getNewsList();
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                NewsListObject newsListObject;
                 try {
                     if (response.body() != null) {
-                        NewsListObject newsListObject = NewsListParser.parseNewsData(response.body().string());
+                        Log.i(TAG, "onResponse: received");
+                        newsListObject = NewsListParser.parseNewsData(response.body().string());
                         Log.i(TAG, "onResponse: "+newsListObject.toString());
-                        liveData.setValue(newsListObject);
+                    }
+                    else {
+                        newsListObject = new NewsListObject();
+                        newsListObject.setError(true);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
+                    newsListObject = new NewsListObject();
+                    newsListObject.setError(true);
                 }
+                liveData.setValue(newsListObject);
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.e(TAG, "onFailure: ",t );
+                NewsListObject newsListObject = new NewsListObject();
+                newsListObject.setError(true);
+                liveData.setValue(newsListObject);
             }
         });
     }

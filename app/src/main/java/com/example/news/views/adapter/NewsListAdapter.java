@@ -3,6 +3,7 @@ package com.example.news.views.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.news.R;
+import com.example.news.listeners.NewsItemClickListener;
 import com.example.news.model.News;
 
 import java.lang.reflect.Array;
@@ -20,10 +22,12 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.MyView
 
     private ArrayList<News> mItems;
     private Context context;
+    private NewsItemClickListener newsItemClickListener;
 
-    public NewsListAdapter(Context context) {
+    public NewsListAdapter(Context context, NewsItemClickListener newsItemClickListener) {
         mItems = new ArrayList<>();
         this.context = context;
+        this.newsItemClickListener = newsItemClickListener;
     }
 
     @NonNull
@@ -35,9 +39,16 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder viewHolder, int i) {
-        News news = mItems.get(i);
+        final News news = mItems.get(i);
         Glide.with(context).load(news.getImageUrl()).into(viewHolder.coverImage);
         viewHolder.titleText.setText(news.getTitle());
+        viewHolder.descText.setText(news.getDescription());
+        viewHolder.coverImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newsItemClickListener.newsItemClicked(news.getUrl());
+            }
+        });
     }
 
     @Override
@@ -46,18 +57,22 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.MyView
     }
 
     public void setData(ArrayList<News> news) {
+        Log.i(TAG, "setData: refreshed");
         this.mItems.clear();
         this.mItems = news;
         notifyDataSetChanged();
     }
 
+    private static final String TAG = "201102387 NewstAdapter";
     class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView coverImage;
         TextView titleText;
+        TextView descText;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             coverImage = itemView.findViewById(R.id.img_news);
-            titleText = itemView.findViewById(R.id.textDesc);
+            descText = itemView.findViewById(R.id.textDesc);
+            titleText = itemView.findViewById(R.id.textviewTitle);
         }
     }
 }
